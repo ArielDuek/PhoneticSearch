@@ -37,6 +37,7 @@ namespace phonetic {
         int count = 0;
         bool cont = false;
         bool fb = true;
+        bool nf = false;
         for (int i = 0; i < text.length(); i++) {
             ch = text.at(i); 
             if (ch == ' '){
@@ -46,12 +47,12 @@ namespace phonetic {
                 fb = true;
             }
             else{
-                if(comp(ch, word.at(count))){
+                if(count<=word.length()-1 && comp(ch, word.at(count))){
                     curr = curr + ch;
                     count++;
                     if ((count == word.length()) && fb) {
                         if (text.at(i + 1) == ' ') cont = true;
-                        else throw out_of_range(word + " is not a full word in the sentence");
+                        else nf = true;
                     }
                 }
                 else{
@@ -59,7 +60,8 @@ namespace phonetic {
                     fb = false;
                 }
             } 
-        } 
-        throw out_of_range("Did not find the word " + word + " in the text");
+        }
+        if (nf) throw runtime_error (word + " is not a full word in the sentence");
+        else throw runtime_error ("Did not find the word " + word + " in the text");
     }
 }
