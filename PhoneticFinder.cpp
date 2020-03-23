@@ -51,7 +51,7 @@ namespace phonetic {
                     count++;
                     if ((count == word.length()) && fb) {
                         if (text.at(i + 1) == ' ') cont = true;
-                        else throw (word + " is not a full word in the sentence");
+                        else throw out_of_range(word + " is not a full word in the sentence");
                     }
                 }
                 else{
@@ -60,6 +60,6 @@ namespace phonetic {
                 }
             } 
         } 
-        throw ("Did not find the word " + word + " in the text");
+        throw out_of_range("Did not find the word " + word + " in the text");
     }
 }
