@@ -6,15 +6,6 @@ using namespace std;
 
 namespace phonetic {
 
-/* v, w
-* b, f, p
-* g, j
-* c, k, q
-* s, z 
-* d, t 
-* o, u
-* i, y
-*/
     bool comp(char a, char b){
         a = tolower(a);
         b = tolower(b);
@@ -25,13 +16,13 @@ namespace phonetic {
             (a == 'd' && b == 't' ) || ( b == 'd' && a == 't') ||
             (a == 'o' && b == 'u' ) || ( b == 'o' && a == 'u') ||
             (a == 'i' && b == 'y' ) || ( b == 'i' && a == 'y') ||
-            ((a == 'b' || a == 'f' || a == 'p' ) && ( b =='b' || b =='f' || b =='p')) ||
-            ((a == 'c' || a == 'k' || a == 'q' ) && ( b =='c' || b =='k' || b =='q'))) return true;
+           ((a == 'b' || a == 'f'   || a == 'p' ) && ( b =='b' || b =='f' || b =='p')) ||
+           ((a == 'c' || a == 'k'   || a == 'q' ) && ( b =='c' || b =='k' || b =='q'))) return true;
         return false;
     }
 
     string find(string text, string word){
-        text = text + ' ';
+        text += ' ';
         string curr = "";
         char ch; 
         int count = 0;
@@ -48,7 +39,7 @@ namespace phonetic {
             }
             else{
                 if(count<=word.length()-1 && comp(ch, word.at(count))){
-                    curr = curr + ch;
+                    curr += ch;
                     count++;
                     if ((count == word.length()) && fb) {
                         if (text.at(i + 1) == ' ') cont = true;
